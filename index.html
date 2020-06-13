@@ -9,10 +9,6 @@
     <script>
         "use strict";
 
-        var $ = function (id) {
-            return document.getElementById(id);
-        };
-
         // global variables
         var entry;
         // var highScore = 0;
@@ -21,6 +17,16 @@
         var total = 0;
         var currentScores = [];
         // var isValid = true;
+
+        var $ = function (id) {
+            return document.getElementById(id);
+        };
+
+        var displayResults = function () {
+            $("results").value = "Current Scores: " + currentScores + "\n" +
+                // "Highest score: " + highScore + "\n" + "Lowest score: " + lowestScore + "\n" +
+                "Average Score: " + avgScore + "\n" + "Total: " + total;
+        };
 
         // create function that calculates average
         var calcAvg = function () {
@@ -42,7 +48,7 @@
             calcAvg();
             // calcHighScore();
             // calcLowestScore();
-            // displayResults();
+            displayResults();
         };
 
         // create a function that adds the event listeners
