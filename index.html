@@ -12,7 +12,7 @@
         // global variables
         var entry;
         var highScore = 0;
-        // var lowestScore = "";
+        var lowestScore = "";
         var avgScore = 0;
         var total = 0;
         var currentScores = [];
@@ -23,11 +23,14 @@
         };
 
         var displayResults = function () {
-            $("results").value = "Current Scores: " + currentScores + "\n" +
-                "Highest score: " + highScore + "\n" /*+ "Lowest score: " + lowestScore + "\n"*/ + 
-                "Average Score: " + avgScore + "\n" + "Total: " + total;
+            $("results").value =
+                "Current Scores: " + currentScores + "\n" +
+                "Highest score: " + highScore + "\n" +
+                "Lowest score: " + lowestScore + "\n" +
+                "Average Score: " + avgScore + "\n" +
+                "Total: " + total;
         };
-        
+
         // create function that calculates average
         var calcAvg = function () {
             avgScore = parseInt(total / currentScores.length);
@@ -43,17 +46,25 @@
         };
 
         // create a function that calculates the lowest score
-
+        var calcLowestScore = function () {
+            if (lowestScore === "") {
+                lowestScore = entry;
+            }
+            for (var i = 0; i < currentScores.length; i++) {
+                if (lowestScore > currentScores[i]) {
+                    lowestScore = currentScores[i];
+                }
+            }
+        };
 
         // create a function that displays the test scores on the page
-
         var processEntries = function () {
             entry = parseInt($("score").value);
             currentScores.push(entry);
             total += entry;
             calcAvg();
             calcHighScore();
-            // calcLowestScore();
+            calcLowestScore();
             displayResults();
         };
 
