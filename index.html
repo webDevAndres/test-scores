@@ -1,23 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Test Scores App</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+        "use strict";
+
+        // global variables
+        var entry;
+        // var highScore = 0;
+        // var lowestScore = "";
+        var avgScore = 0;
+        var total = 0;
+        var currentScores = [];
+        // var isValid = true;
+
+        var $ = function (id) {
+            return document.getElementById(id);
+        };
+
+        var displayResults = function () {
+            $("results").value = "Current Scores: " + currentScores + "\n" +
+                // "Highest score: " + highScore + "\n" + "Lowest score: " + lowestScore + "\n" +
+                "Average Score: " + avgScore + "\n" + "Total: " + total;
+        };
+
+        // create function that calculates average
+        var calcAvg = function () {
+            avgScore = parseInt(total / currentScores.length);
+        };
+
+        // create a function that calculates the highest score
+
+
+        // create a function that calculates the lowest score
+
+
+        // create a function that displays the test scores on the page
+
+        var processEntries = function () {
+            entry = parseInt($("score").value);
+            currentScores.push(entry);
+            total += entry;
+            calcAvg();
+            // calcHighScore();
+            // calcLowestScore();
+            displayResults();
+        };
+
+        // create a function that adds the event listeners
+        window.onload = function () {
+            $("calculate").onclick = processEntries;
+            $("score").focus();
+        };
+    </script>
 </head>
+
 <body>
     <main>
         <h1>Test Scores App</h1>
         <label for="score">Test Score:</label>
-        <input type="text" id="score">
-        <br>
+        <input type="text" id="score" />
+        <br />
         <label for="calculate">&nbsp;</label>
-        <input type="button" id="calculate" value="Submit">
-        <br>
+        <input type="button" id="calculate" value="Submit" />
+        <br />
         <label for="results">Results:</label>
-        <br>
-        <textarea name="results" id="results" cols="30" rows="5" disabled></textarea>
+        <br />
+        <textarea name="results" id="results" cols="30" rows="10" disabled></textarea>
     </main>
 </body>
+
 </html>
