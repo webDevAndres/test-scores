@@ -1,2 +1,2 @@
-# Test scores App
+# Test Scores App
 Find average test scores
