@@ -11,7 +11,7 @@
 
         // global variables
         var entry;
-        // var highScore = 0;
+        var highScore = 0;
         // var lowestScore = "";
         var avgScore = 0;
         var total = 0;
@@ -24,17 +24,23 @@
 
         var displayResults = function () {
             $("results").value = "Current Scores: " + currentScores + "\n" +
-                // "Highest score: " + highScore + "\n" + "Lowest score: " + lowestScore + "\n" +
+                "Highest score: " + highScore + "\n" /*+ "Lowest score: " + lowestScore + "\n"*/ + 
                 "Average Score: " + avgScore + "\n" + "Total: " + total;
         };
-
+        
         // create function that calculates average
         var calcAvg = function () {
             avgScore = parseInt(total / currentScores.length);
         };
 
         // create a function that calculates the highest score
-
+        var calcHighScore = function () {
+            for (var i = 0; i < currentScores.length; i++) {
+                if (highScore < currentScores[i]) {
+                    highScore = currentScores[i];
+                }
+            }
+        };
 
         // create a function that calculates the lowest score
 
@@ -46,7 +52,7 @@
             currentScores.push(entry);
             total += entry;
             calcAvg();
-            // calcHighScore();
+            calcHighScore();
             // calcLowestScore();
             displayResults();
         };
