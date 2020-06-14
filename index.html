@@ -16,7 +16,6 @@
         var avgScore = 0;
         var total = 0;
         var currentScores = [];
-        // var isValid = true;
 
         var $ = function (id) {
             return document.getElementById(id);
@@ -60,12 +59,26 @@
         // create a function that displays the test scores on the page
         var processEntries = function () {
             entry = parseInt($("score").value);
-            currentScores.push(entry);
-            total += entry;
-            calcAvg();
-            calcHighScore();
-            calcLowestScore();
-            displayResults();
+            var isValid = true;
+
+            if (isNaN(entry)) {
+                $("score_error").textContent = "Please enter a whole number.";
+                isValid = false;
+            }
+            else {
+                $("score_error").textContent = "";
+            }
+
+            if (isValid) {
+                currentScores.push(entry);
+                total += entry;
+                calcAvg();
+                calcHighScore();
+                calcLowestScore();
+                displayResults();
+                $("score").focus();
+            }
+
         };
 
         // create a function that adds the event listeners
@@ -81,6 +94,7 @@
         <h1>Test Scores App</h1>
         <label for="score">Test Score:</label>
         <input type="text" id="score" />
+        <span id="score_error"></span>
         <br />
         <label for="calculate">&nbsp;</label>
         <input type="button" id="calculate" value="Submit" />
